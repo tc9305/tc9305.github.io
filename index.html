@@ -334,6 +334,80 @@
             box-shadow: 0 0 10px rgba(255, 106, 19, 0.6);
         }
 
+        /* ================= 忍者修煉課表（課程分類卡片） ================= */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            margin-top: 10px;
+        }
+
+        .course-category-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 14px;
+            padding: 24px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .course-category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 四大屬性邊框發光 */
+        .course-category-card.ai-alg { border-top: 4px solid var(--chakra-purple); }
+        .course-category-card.vision { border-top: 4px solid var(--rasengan-blue); }
+        .course-category-card.sys { border-top: 4px solid var(--naruto-orange); }
+        .course-category-card.art { border-top: 4px solid var(--uzumaki-red); }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.15rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 10px;
+        }
+
+        .course-category-card.ai-alg .category-header i { color: var(--chakra-purple); }
+        .course-category-card.vision .category-header i { color: var(--rasengan-blue); }
+        .course-category-card.sys .category-header i { color: var(--naruto-orange); }
+        .course-category-card.art .category-header i { color: var(--uzumaki-red); }
+
+        .course-list {
+            list-style: none;
+        }
+
+        .course-list li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .course-list li::before {
+            content: '❖';
+            color: var(--naruto-orange);
+            font-size: 0.8rem;
+        }
+
+        .course-code {
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
         /* ================= 任務卷軸（經歷與成果） ================= */
         .mission-timeline {
             position: relative;
@@ -533,7 +607,7 @@
         <div class="social-container">
             <a href="https://github.com/tc9305" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
             <!-- 履歷按鈕：點擊可下載/開啟同目錄下的 resume.pdf -->
-            <a href="resume.png" target="_blank" class="social-btn resume"><i class="fa-solid fa-scroll"></i> 個人履歷</a>
+            <a href="resume.pdf" target="_blank" class="social-btn resume"><i class="fa-solid fa-scroll"></i> 個人履歷</a>
             <a href="mailto:tc930512@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
             <a href="https://www.instagram.com/shuo_0512/" target="_blank" class="social-btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
             <a href="https://www.threads.net/@shuo_0512" target="_blank" class="social-btn threads"><i class="fa-solid fa-at"></i> Threads</a>
@@ -554,7 +628,7 @@
             <div class="nindo-card">
                 <p>
                     <strong>「言出必行，這就是我的忍道！」</strong><br>
-                    嗨，我是碩文，目前在元智大學鑽研「資工之術」（資工系四年級）。我的主要修煉領域圍繞在<strong>人工智慧應用與後端系統架構整合</strong>。我不僅熟練於資料處理、後端 API 開發，更具備雲端與 Docker 部署經驗。對我而言，把 AI 預測模型成功整合到實體應用、解決生活周遭的具體問題，就像成功研發一門實用的新忍術一樣，無比暢快！
+                    嗨，我是碩文，目前在元智大學鑽研「資工之術」（資工系四年級）。我的主要修煉領域圍繞在<strong>人工智慧應用與後端系統架構整合</strong>。我不僅熟練於資料處理、後端 API 開發，更具備雲端與 Docker 部署的經驗。對我而言，把 AI 預測模型成功整合到實體應用、解決生活周遭的具體問題，就像成功研發一門實用的新忍術一樣，無比暢快！
                 </p>
                 <p>
                     除了個人的硬實力，我極度在乎同伴間的<strong>「羈絆」</strong>（溝通交流與團隊合作）。在實驗室與專題修行外，我也喜歡涉足各種新奇領域。我期許自己在未來的研究所階段能如「開啟仙人模式」一般，全面深化對演算法及 AI 模型的根本性理解！
@@ -593,6 +667,72 @@
                         </div>
                         <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 88%;"></div></div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 忍者修煉課表 // COURSES -->
+        <section id="courses">
+            <div class="section-scroll-title">
+                <div class="scroll-rod"></div>
+                <div class="scroll-paper">忍者修煉課表 // COURSES</div>
+                <div class="scroll-rod"></div>
+            </div>
+
+            <div class="courses-grid">
+                <!-- 類別 1: 仙術與預測 (AI, Data, Alg) -->
+                <div class="course-category-card ai-alg">
+                    <div class="category-header">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>仙術與預測 (AI & 演算法)</span>
+                    </div>
+                    <ul class="course-list">
+                        <li><span class="course-code">CS351</span> 人工智慧輔助軟體開發</li>
+                        <li><span class="course-code">CS412</span> 資料探勘 (Data Mining)</li>
+                        <li><span class="course-code">CS309</span> 演算法概論</li>
+                        <li><span class="course-code">CS678</span> 高級圖論 (Graph Theory)</li>
+                    </ul>
+                </div>
+
+                <!-- 類別 2: 寫輪瞳術與渲染 (Vision & Graphics) -->
+                <div class="course-category-card vision">
+                    <div class="category-header">
+                        <i class="fa-solid fa-eye"></i>
+                        <span>寫輪瞳術 (影像與遊戲)</span>
+                    </div>
+                    <ul class="course-list">
+                        <li><span class="course-code">CS362</span> 影像處理概論 (CV)</li>
+                        <li><span class="course-code">CS330</span> 遊戲引擎理論與實務</li>
+                        <li><span class="course-code">CS410</span> 智慧型科技應用</li>
+                    </ul>
+                </div>
+
+                <!-- 類別 3: 陣法結印與架構 (Systems & Cloud) -->
+                <div class="course-category-card sys">
+                    <div class="category-header">
+                        <i class="fa-solid fa-server"></i>
+                        <span>結印陣法 (系統與雲端)</span>
+                    </div>
+                    <ul class="course-list">
+                        <li><span class="course-code">CS337</span> 雲端運算與服務</li>
+                        <li><span class="course-code">CS320</span> 微處理機系統設計</li>
+                        <li><span class="course-code">CS305</span> 作業系統概論</li>
+                        <li><span class="course-code">CS151</span> 網站程式設計實務</li>
+                    </ul>
+                </div>
+
+                <!-- 類別 4: 封印防禦與修煉基本功 (Fundamentals & Security) -->
+                <div class="course-category-card art">
+                    <div class="category-header">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>封印防護 (基礎與安全)</span>
+                    </div>
+                    <ul class="course-list">
+                        <li><span class="course-code">CS203</span> 資料結構 (Data Structures)</li>
+                        <li><span class="course-code">CS354</span> 電腦與網路安全概論</li>
+                        <li><span class="course-code">CS107</span> 離散數學 (Discrete Math)</li>
+                        <li><span class="course-code">CS222</span> 程式語言 (PL)</li>
+                    </ul>
                 </div>
             </div>
         </section>
