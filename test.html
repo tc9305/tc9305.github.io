@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蔣碩文 · 忍道 · 程式修行</title>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 火影風格字體：日本風 + 粗獷感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Kaisei+Tokumin:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --naruto-orange: #f97316;
+            --naruto-dark: #1a1a2e;
+            --naruto-card: rgba(30, 27, 45, 0.75);
+            --naruto-border: #f97316;
+            --naruto-shadow: rgba(249, 115, 22, 0.25);
+            --text-light: #f5e8d8;
+            --text-muted: #b8a9a1;
+            --bg-wood: #0f0c1a;
+            --scrollbar: #f97316;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-wood);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(249, 115, 22, 0.05) 0%, transparent 40%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20 20 L80 20 L80 80 L20 80 Z" stroke="rgba(249,115,22,0.03)" stroke-width="1" fill="none"/><circle cx="50" cy="50" r="8" stroke="rgba(249,115,22,0.02)" stroke-width="1" fill="none"/></svg>');
+            color: var(--text-light);
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0f0c1a; }
+        ::-webkit-scrollbar-thumb { background: var(--naruto-orange); border-radius: 6px; border: 2px solid #1a1a2e; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* ===== 卷軸 ===== */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, #1e1a2b 0%, #0f0c1a 100%);
+            border-bottom: 4px solid var(--naruto-orange);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.1);
+            overflow: visible;
+        }
+
+        /* 火影背景圖 - 忍界風 */
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&q=80') center/cover no-repeat;
+            opacity: 0.12;
+            filter: blur(2px) brightness(0.6);
+            z-index: 0;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            background: radial-gradient(circle at 30% 30%, #f97316, #b45309);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.5), inset 0 0 15px rgba(255, 200, 50, 0.3);
+            border: 2px solid #fbbf24;
+            transition: 0.4s ease;
+            cursor: pointer;
+        }
+        .avatar-container:hover {
+            transform: scale(1.02) rotate(2deg);
+            box-shadow: 0 0 45px #f97316;
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #0f0c1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #0f0c1a;
+            overflow: hidden;
+        }
+
+        .avatar-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .avatar-inner span {
+            font-size: 3.2rem;
+            font-weight: 900;
+            font-family: 'Kaisei Tokumin', serif;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+            letter-spacing: 4px;
+        }
+
+        header h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            font-family: 'Kaisei Tokumin', serif;
+            letter-spacing: 6px;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+            color: #fff3e0;
+            margin-bottom: 6px;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fbbf24;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 4px 20px;
+            border-radius: 30px;
+            letter-spacing: 2px;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            backdrop-filter: blur(2px);
+            margin-bottom: 20px;
+        }
+
+        .catchphrase {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Kaisei Tokumin', serif;
+            color: #fbbf24;
+            text-shadow: 0 0 20px rgba(249, 115, 22, 0.6);
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 8px 28px;
+            border-radius: 40px;
+            border: 1px solid #f97316;
+            backdrop-filter: blur(2px);
+        }
+
+        header .intro-text {
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 25px;
+            font-size: 1.05rem;
+            background: rgba(0,0,0,0.25);
+            padding: 16px 24px;
+            border-radius: 20px;
+            border-left: 4px solid var(--naruto-orange);
+            backdrop-filter: blur(2px);
+            text-align: left;
+        }
+
+        header .intro-text strong {
+            color: #fbbf24;
+            font-weight: 900;
+        }
+
+        /* 社交按鈕 — 苦無風格 */
+        .social-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 22px;
+            border: 1px solid rgba(249, 115, 22, 0.5);
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            background: rgba(30, 27, 45, 0.6);
+            backdrop-filter: blur(4px);
+            transition: all 0.25s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 5px rgba(249, 115, 22, 0.1);
+        }
+
+        .social-btn:hover {
+            background: rgba(249, 115, 22, 0.15);
+            border-color: #fbbf24;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+            color: #fff;
+        }
+
+        .social-btn i {
+            color: #fbbf24;
+        }
+
+        /* ===== 區塊標題 忍術 ===== */
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 900;
+            font-family: 'Kaisei Tokumin', serif;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #f5e8d8;
+            border-bottom: 3px solid var(--naruto-orange);
+            padding-bottom: 12px;
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.2);
+            letter-spacing: 2px;
+        }
+
+        .section-title i {
+            color: #fbbf24;
+            font-size: 1.6rem;
+            filter: drop-shadow(0 0 8px #f97316);
+        }
+
+        section {
+            margin-bottom: 70px;
+        }
+
+        /* ===== 時間軸 ===== */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
+            background: linear-gradient(180deg, #f97316, #fbbf24, #b45309);
+            border-radius: 6px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -30px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #0f0c1a;
+            border: 3px solid #f97316;
+            box-shadow: 0 0 18px #f97316;
+            transition: 0.3s;
+        }
+
+        .timeline-item.active .timeline-dot {
+            background: #fbbf24;
+            border-color: #f97316;
+            box-shadow: 0 0 25px #f97316;
+        }
+
+        .timeline-item.next .timeline-dot {
+            background: #f97316;
+            border-color: #fbbf24;
+            box-shadow: 0 0 30px #f97316;
+        }
+
+        .timeline-content {
+            background: var(--naruto-card);
+            border: 1px solid rgba(249, 115, 22, 0.25);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(4px);
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .timeline-content:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 0 25px rgba(249, 115, 22, 0.15);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-institution {
+            font-size: 1.3rem;
+            font-weight: 900;
+            font-family: 'Kaisei Tokumin', serif;
+            color: #f5e8d8;
+            letter-spacing: 1px;
+        }
+
+        .timeline-item.next .timeline-institution {
+            color: #fbbf24;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+        }
+
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #b8a9a1;
+            background: rgba(249, 115, 22, 0.1);
+            padding: 2px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+
+        .timeline-detail {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-detail strong {
+            color: #fbbf24;
+        }
+
+        /* ===== 修課 ===== */
+        .course-tabs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            background: var(--naruto-card);
+            border: 1px solid rgba(249, 115, 22, 0.15);
+            border-radius: 20px;
+            padding: 22px 18px;
+            backdrop-filter: blur(4px);
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .course-card:hover {
+            transform: translateY(-6px);
+            border-color: #fbbf24;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.15);
+            background: rgba(40, 35, 55, 0.8);
+        }
+
+        .course-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #fbbf24;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            border-left: 4px solid #f97316;
+            padding-left: 10px;
+        }
+
+        .course-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f5e8d8;
+            margin-bottom: 12px;
+            font-family: 'Kaisei Tokumin', serif;
+        }
+
+        .course-sublist {
+            list-style: none;
+        }
+
+        .course-sublist li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .course-sublist li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #f97316;
+            font-size: 0.7rem;
+            top: 2px;
+        }
+
+        /* ===== 專案卡片 ===== */
+        .project-card {
+            background: var(--naruto-card);
+            border: 1px solid rgba(249, 115, 22, 0.15);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: 0.25s;
+        }
+
+        .project-card:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 8px 30px rgba(249, 115, 22, 0.12);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            font-family: 'Kaisei Tokumin', serif;
+            color: #f5e8d8;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 30px;
+            background: rgba(249, 115, 22, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .project-bullets {
+            list-style: none;
+            padding-left: 5px;
+        }
+
+        .project-bullets li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .project-bullets li::before {
+            content: '⚔️';
+            position: absolute;
+            left: 0;
+            color: #f97316;
+            font-size: 1rem;
+            filter: drop-shadow(0 0 4px #f97316);
+        }
+
+        .project-bullets li strong {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        /* ===== 課外 ===== */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .activities-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== 頁尾 ===== */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 2px solid rgba(249, 115, 22, 0.2);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(2px);
+        }
+
+        footer p {
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        /* ===== 響應 ===== */
+        @media (max-width: 500px) {
+            header h1 { font-size: 2.5rem; }
+            .avatar-container { width: 110px; height: 110px; }
+            .social-btn { padding: 6px 14px; font-size: 0.8rem; }
+            .catchphrase { font-size: 1.2rem; padding: 4px 16px; }
+        }
+
+        /* ===== 新分頁導航樣式 ===== */
+        .page-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0 20px;
+        }
+        .page-tab {
+            background: rgba(30, 27, 45, 0.7);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 40px;
+            padding: 10px 24px;
+            color: var(--text-light);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+            backdrop-filter: blur(4px);
+            font-family: 'Kaisei Tokumin', serif;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+        .page-tab:hover, .page-tab.active {
+            background: rgba(249, 115, 22, 0.2);
+            border-color: #fbbf24;
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.2);
+            color: #fff;
+        }
+        .page-tab i {
+            margin-right: 8px;
+            color: #fbbf24;
+        }
+
+        .page-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 卷軸修行頁面 */
+        .scroll-item {
+            background: var(--naruto-card);
+            border-left: 4px solid #f97316;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            transition: 0.2s;
+        }
+        .scroll-item:hover {
+            border-left-color: #fbbf24;
+            background: rgba(40, 35, 55, 0.7);
+        }
+        .scroll-item h4 {
+            color: #fbbf24;
+            font-family: 'Kaisei Tokumin', serif;
+            font-size: 1.1rem;
+        }
+        .scroll-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+        .scroll-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: rgba(249, 115, 22, 0.2);
+            padding: 2px 12px;
+            border-radius: 30px;
+            color: #fbbf24;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="avatar-container" id="avatarToggle">
+        <div class="avatar-inner" id="avatarInner">
+            <span>碩</span>
+        </div>
+    </div>
+    <h1>蔣碩文</h1>
+    <div class="subtitle">資訊工程學系 · 忍道修行</div>
+    
+    <div class="catchphrase">🔥 言出必行 · 就是我的忍道 🔥</div>
+
+    <p class="intro-text">
+        <i class="fa-solid fa-user-ninja" style="color:#fbbf24; margin-right:8px;"></i>
+        <strong>ESFP</strong> · 熱愛旅行、日本文化、拉麵與日文歌 🍜<br>
+        最近剛從東京修業歸來，靈魂被霓虹與拉麵湯頭徹底淨化。<br>
+        最喜歡的忍者動漫當然是 <strong>《火影忍者》</strong> —— 相信「羈絆」與「意志」是改變世界的力量。<br>
+        日常彈吉他自娛，最愛歌手 <strong>Yuuri、Fuji Kaze、Vaundy</strong>，音樂與程式碼都是我的查克拉。<br>
+        <span style="color:#fbbf24;">✦ 現正修練：深度學習 · 電腦視覺 · 後端忍術 ✦</span>
+    </p>
+
+    <div class="social-container">
+        <a href="https://github.com/tc9305" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
+        <a href="RESUME.pdf" target="_blank" class="social-btn"><i class="fa-solid fa-file-pdf"></i> 個人履歷</a>
+        <a href="mailto:tc930512@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.instagram.com/shuo_0512/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.threads.net/@shuo_0512" target="_blank" class="social-btn"><i class="fa-solid fa-at"></i> Threads</a>
+        <a href="tel:0966761550" class="social-btn"><i class="fas fa-phone"></i> 聯絡</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- 分頁導航 -->
+    <div class="page-tabs">
+        <div class="page-tab active" data-page="page-main"><i class="fa-solid fa-scroll"></i> 修業卷軸</div>
+        <div class="page-tab" data-page="page-ninja"><i class="fa-solid fa-shuriken"></i> 忍者工具箱</div>
+        <div class="page-tab" data-page="page-journal"><i class="fa-regular fa-note-sticky"></i> 修業日誌</div>
+    </div>
+
+    <!-- ===== 主頁面 ===== -->
+    <div id="page-main" class="page-content active">
+
+        <!-- 學術軌跡 -->
+        <section id="academic-timeline">
+            <div class="section-title">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>學術軌跡 // Timeline</span>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item active">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-institution">元智大學 (YZU) — 資訊工程學系</span>
+                            <span class="timeline-date">2022.09 - 2026.06</span>
+                        </div>
+                        <div class="timeline-detail">
+                            <p>大學學士階段。專注於計算機科學核心學科與核心程式設計，並於中高年級起深耕<strong>人工智慧應用、電腦視覺、資料科學與遊戲引擎實務</strong>。在此期間奠定了紮實的實作基礎，並跨足企業實習環境。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item next">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <span class="timeline-institution">國立臺灣師範大學 (NTNU) — 資訊工程研究所</span>
+                            <span class="timeline-date">2026.09 - 預計 2028.06</span>
+                        </div>
+                        <div class="timeline-detail">
+                            <p>即將就讀之碩士班階段。研究方向預計聚焦於演算法優化、前沿深度學習架構設計與底層 AI 模型開發，目標將學術研究與大規模工業界需求進行深度整合。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 修課紀錄 -->
+        <section id="coursework">
+            <div class="section-title">
+                <i class="fa-solid fa-book-bookmark"></i>
+                <span>課程修練結算 // Coursework</span>
+            </div>
+
+            <div class="course-tabs">
+                <div class="course-card">
+                    <div class="course-year">AI & Data Science</div>
+                    <h4>人工智慧與資料科學</h4>
+                    <ul class="course-sublist">
+                        <li>機器學習與深度學習</li>
+                        <li>資料探勘 (Data Mining)</li>
+                        <li>人工智慧輔助軟體開發</li>
+                        <li>生物資訊概論</li>
+                        <li>智慧型科技應用</li>
+                    </ul>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-year">Computer Vision & Graphics</div>
+                    <h4>電腦視覺與互動媒體</h4>
+                    <ul class="course-sublist">
+                        <li>影像處理概論 (OpenCV)</li>
+                        <li>遊戲引擎理論與實務 (Unity)</li>
+                        <li>物件偵測與自訂資料集 (YOLO)</li>
+                    </ul>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-year">Systems & Network</div>
+                    <h4>系統、網路與後端開發</h4>
+                    <ul class="course-sublist">
+                        <li>微處理機系統設計</li>
+                        <li>雲端運算與服務</li>
+                        <li>計算機網路概論</li>
+                        <li>新型態網路</li>
+                        <li>電腦與網路安全概論</li>
+                        <li>網站程式設計實務</li>
+                    </ul>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-year">Core Computer Science</div>
+                    <h4>資工核心理論基本功</h4>
+                    <ul class="course-sublist">
+                        <li>資料結構</li>
+                        <li>演算法概論</li>
+                        <li>作業系統概論</li>
+                        <li>圖論 (Graduate Course)</li>
+                        <li>機率與統計 / 組合語言</li>
+                        <li>離散數學 / 線性代數</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 專業經歷 -->
+        <section id="experience">
+            <div class="section-title">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>任務紀錄 // Experience</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">深度學習與 AI 模型應用：生醫資訊與智慧寵物辨識系統</span>
+                    <span class="project-tag">學術專案</span>
+                </div>
+                <ul class="project-bullets">
+                    <li><strong>電腦視覺 (YOLO 寵物辨識)</strong>：自主完成自定義資料集的蒐集、影像標註與資料增強，透過 YOLO 模型調參最佳化，大幅提升即時物件偵測的推論速度與準確度。</li>
+                    <li><strong>生醫資訊 (蛋白質序列預測)</strong>：處理高維度生物序列非結構化資料，進行數據前處理、特徵萃取與序列模型訓練，精準預測其潛在特性。</li>
+                    <li>整合 <strong>OpenCV 影像處理工具</strong>與實體 IoT 裝置，成功實現端到端 (End-to-End) 的「即時影像辨識系統」。</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">達方電子 (DARFON) ITS 部門 BPM 團隊 — 系統開發實習生</span>
+                    <span class="project-tag">企業實習 (2025.01 - 2025.09)</span>
+                </div>
+                <ul class="project-bullets">
+                    <li>基於 <strong>ASP.NET MVC 框架</strong>，使用 C#、JavaScript、jQuery 實作與重構前後端核心系統功能。</li>
+                    <li>設計與維護 <strong>SQL Server 資料庫</strong>，編寫預存程序 (Stored Procedure) 與 Trigger，確保資料高度一致性。</li>
+                    <li>透過執行計畫進行 <strong>Query 索引優化 (Query Indexing)</strong> 與批次大數據資料處理，顯著提升系統查詢效率。</li>
+                    <li>開發主子表資料關聯、報表查詢與自動化資料匯出功能。</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">自主雲端部署與自動化通知系統</span>
+                    <span class="project-tag">個人項目</span>
+                </div>
+                <ul class="project-bullets">
+                    <li>獨立建置與配置<strong>個人實體 NAS 伺服器</strong>，熟練掌握 HTTP/HTTPS/TCP 等網路底層協議。</li>
+                    <li>結合 <strong>Webhook 與 API 技術整合開發 Line Bot</strong>，實現自動化即時通知與系統警報功能。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 課外 -->
+        <section id="activities">
+            <div class="section-title">
+                <i class="fa-solid fa-compass"></i>
+                <span>綜合素養與課外參與 // Complementary</span>
+            </div>
+
+            <div class="activities-grid">
+                <div class="project-card" style="margin-bottom:0;">
+                    <h4 style="margin-bottom:10px;"><i class="fa-solid fa-users" style="color:#fbbf24; margin-right:8px;"></i>團隊協作與組織能力</h4>
+                    <p style="font-size:0.95rem; color:var(--text-muted);">
+                        曾出任<strong>資工系學會幹部</strong>，負責並筹辦多項系內大型活動，具備良好的溝通能力、群眾凝聚力與跨團隊協調協作思維。
+                    </p>
+                </div>
+                <div class="project-card" style="margin-bottom:0;">
+                    <h4 style="margin-bottom:10px;"><i class="fa-solid fa-guitar" style="color:#fbbf24; margin-right:8px;"></i>科技與感性的調和</h4>
+                    <p style="font-size:0.95rem; color:var(--text-muted);">
+                        作為<strong>吉他社</strong>成員，喜愛自彈自唱。在緊密的程式代碼與嚴謹的邏輯思考之外，透過音樂培養感性視角與創造力，極度享受生活與科技碰撞的樂趣。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== 忍者工具箱 ===== -->
+    <div id="page-ninja" class="page-content">
+        <div class="section-title">
+            <i class="fa-solid fa-shuriken"></i>
+            <span>忍者工具箱 // 常用忍具</span>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:20px;">
+            <div class="course-card" style="text-align:center; padding:30px 20px;">
+                <i class="fa-solid fa-code" style="font-size:3rem; color:#fbbf24;"></i>
+                <h4 style="margin-top:12px;">C / C++</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">系統程式 · 演算法</p>
+            </div>
+            <div class="course-card" style="text-align:center; padding:30px 20px;">
+                <i class="fa-brands fa-python" style="font-size:3rem; color:#fbbf24;"></i>
+                <h4 style="margin-top:12px;">Python</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">深度學習 · 資料科學</p>
+            </div>
+            <div class="course-card" style="text-align:center; padding:30px 20px;">
+                <i class="fa-solid fa-c" style="font-size:3rem; color:#fbbf24;"></i>
+                <h4 style="margin-top:12px;">C# / .NET</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">企業後端 · MVC</p>
+            </div>
+
+            <div class="course-card" style="text-align:center; padding:30px 20px;">
+                <i class="fa-brands fa-js" style="font-size:3rem; color:#fbbf24;"></i>
+                <h4 style="margin-top:12px;">JavaScript</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">前端互動 · jQuery</p>
+            </div>
+            <div class="course-card" style="text-align:center; padding:30px 20px;">
+                <i class="fa-solid fa-database" style="font-size:3rem; color:#fbbf24;"></i>
+                <h4 style="margin-top:12px;">SQL Server</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">資料庫設計 · 優化</p>
+            </div>
+            <div class="course-card" style="text-align:center; padding:30px 20px;">
+                <i class="fa-solid fa-eye" style="font-size:3rem; color:#fbbf24;"></i>
+                <h4 style="margin-top:12px;">OpenCV</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">影像處理 · 電腦視覺</p>
+            </div>
+            <div class="course-card" style="text-align:center; padding:30px 20px;">
+                <i class="fa-brands fa-unity" style="font-size:3rem; color:#fbbf24;"></i>
+                <h4 style="margin-top:12px;">Unity</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">遊戲引擎 · 互動開發</p>
+            </div>
+            <div class="course-card" style="text-align:center; padding:30px 20px;">
+                <i class="fa-solid fa-cloud" style="font-size:3rem; color:#fbbf24;"></i>
+                <h4 style="margin-top:12px;">Linux / NAS</h4>
+                <p style="color:var(--text-muted); font-size:0.9rem;">伺服器部署 · 網路協定</p>
+            </div>
+        </div>
+        <p style="color:var(--text-muted); margin-top:30px; text-align:center; border-top:1px solid rgba(249,115,22,0.2); padding-top:30px;">
+            <i class="fa-solid fa-shield" style="color:#fbbf24; margin-right:8px;"></i>
+            修行中持續解鎖新忍具 ...
+        </p>
+    </div>
+
+    <!-- ===== 修業日誌 ===== -->
+    <div id="page-journal" class="page-content">
+        <div class="section-title">
+            <i class="fa-regular fa-note-sticky"></i>
+            <span>修業日誌 // 近期修行筆記</span>
+        </div>
+
+        <div class="scroll-item">
+            <h4>🌊 東京畢業旅行歸來</h4>
+            <p>2026.05.14 ~ 05.20 — 剛從東京回來，最愛鴨to蔥拉麵、還有生魚片丼飯。在秋葉原挖到寶：火影忍者鑰匙圈。</p>
+            <span class="scroll-tag">#旅行</span>
+        </div>
+        <div class="scroll-item">
+            <h4>🎸 吉他練習隨手記</h4>
+            <p>2024夏天 ~ 現在 — 最近迷上各種樂團音樂演出，所以加入了吉他社，到現在偶爾會拿起來刷和弦</p>
+            <span class="scroll-tag">#音樂</span>
+        </div>
+        <div class="scroll-item">
+            <h4>🧠寵物辨識系統</h4>
+            <p>2025大三下 — 這算是人生中第一次接觸AI模型，我覺得太酷了，但也很害怕會被取代，一定要好好鑽研我的技術!</p>
+            <span class="scroll-tag">#專案</span>
+        </div>
+        <div class="scroll-item">
+            <h4>📖 《火影忍者》教我的事情</h4>
+            <p>「我向來都是說到做到，這就是我的忍道。」每次讀到這句話都充滿幹勁。</p>
+            <span class="scroll-tag">#生活</span>
+        </div>
+        <div class="scroll-item">
+            <h4>⚙️ NAS 伺服器日誌</h4>
+            <p>2026 — 家裡購買了NAS，所以就拿來玩玩，架了LINEBOT，但後來發現有額度限制，有空再來看看能做甚麼酷東西</p>
+            <span class="scroll-tag">#系統</span>
+        </div>
+        <p style="color:var(--text-muted); margin-top:20px; text-align:center; font-size:0.9rem;">
+            <i class="fa-regular fa-pen-to-square" style="color:#fbbf24;"></i> 持續更新中 ...
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 蔣碩文 Shuo-Wen Chiang · 忍道 · Built with 火影魂 & JetBrains Mono</p>
+</footer>
+
+<script>
+    (function(){
+        // 頭像切換
+        const avatarContainer = document.getElementById('avatarToggle');
+        const avatarInner = document.getElementById('avatarInner');
+        let isAvatar = false;
+        const avatarImgUrl = 'https://i.pravatar.cc/300?img=11';
+
+        avatarContainer.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!isAvatar) {
+                avatarInner.innerHTML = `<img src="${avatarImgUrl}" alt="avatar">`;
+                isAvatar = true;
+            } else {
+                avatarInner.innerHTML = `<span>碩</span>`;
+                isAvatar = false;
+            }
+        });
+
+        // 分頁切換
+        const tabs = document.querySelectorAll('.page-tab');
+        const pages = {
+            'page-main': document.getElementById('page-main'),
+            'page-ninja': document.getElementById('page-ninja'),
+            'page-journal': document.getElementById('page-journal')
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.dataset.page;
+                // 更新 tab 樣式
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // 更新頁面
+                Object.keys(pages).forEach(key => {
+                    pages[key].classList.remove('active');
+                });
+                if (pages[target]) {
+                    pages[target].classList.add('active');
+                }
+            });
+        });
+    })();
+</script>
+
+</body>
+</html>
