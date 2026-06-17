@@ -3,164 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>蔣碩文的忍道 | Shuo-Wen Chiang - Naruto Portfolio</title>
-    <!-- 引入 FontAwesome 與 Google Fonts 確保日系科技感字體 -->
+    <title>蔣碩文 | 忍道 · 程式修行</title>
+    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
+    <!-- 火影風格字體：日本風 + 粗獷感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Kaisei+Tokumin:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #090a0f;
-            --bg-card: #13141f;
-            --naruto-orange: #ff6a13; /* 經典鳴人橘 */
-            --uzumaki-red: #d32f2f; /* 漩渦一族紅 */
-            --rasengan-blue: #00d2ff; /* 螺旋丸藍 */
-            --chakra-purple: #9b51e0; /* 查克拉紫 */
-            --text-light: #f5f6fa;
-            --text-muted: #8e95a5;
-            --border-glow: rgba(255, 106, 19, 0.25);
+            --naruto-orange: #f97316;
+            --naruto-dark: #1a1a2e;
+            --naruto-card: rgba(30, 27, 45, 0.75);
+            --naruto-border: #f97316;
+            --naruto-shadow: rgba(249, 115, 22, 0.25);
+            --text-light: #f5e8d8;
+            --text-muted: #b8a9a1;
+            --bg-wood: #0f0c1a;
+            --scrollbar: #f97316;
         }
 
-        /* 網頁基礎設定與自訂捲軸 */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Noto Sans TC', sans-serif;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.8;
-            overflow-x: hidden;
-            /* 背景加上淡淡的查克拉氣場漸層 */
+            background-color: var(--bg-wood);
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 106, 19, 0.04) 0%, transparent 45%),
-                radial-gradient(circle at 90% 80%, rgba(0, 210, 255, 0.04) 0%, transparent 45%);
+                radial-gradient(circle at 10% 20%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(249, 115, 22, 0.05) 0%, transparent 40%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20 20 L80 20 L80 80 L20 80 Z" stroke="rgba(249,115,22,0.03)" stroke-width="1" fill="none"/><circle cx="50" cy="50" r="8" stroke="rgba(249,115,22,0.02)" stroke-width="1" fill="none"/></svg>');
+            color: var(--text-light);
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--naruto-orange);
-            border-radius: 4px;
-        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0f0c1a; }
+        ::-webkit-scrollbar-thumb { background: var(--naruto-orange); border-radius: 6px; border: 2px solid #1a1a2e; }
 
         .container {
-            max-width: 1050px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 40px 20px 60px;
         }
 
-        /* ================= Header 區塊（火影護額 & 登記資料） ================= */
+        /* ===== 卷軸 ===== */
         header {
             text-align: center;
-            padding: 90px 20px 70px;
+            padding: 80px 20px 50px;
+            background: linear-gradient(180deg, #1e1a2b 0%, #0f0c1a 100%);
+            border-bottom: 4px solid var(--naruto-orange);
             position: relative;
-            background: linear-gradient(180deg, #161722 0%, var(--bg-dark) 100%);
-            border-bottom: 2px dashed var(--naruto-orange);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.1);
         }
 
-        /* 金屬護額裝飾條 (Metal Headband style) */
-        header::before {
-            content: '';
+        /* 木葉標誌風格 — 抽象螺旋 */
+        header::after {
+            content: "⚡";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 14px;
-            background: linear-gradient(90deg, #333 0%, #bdc3c7 45%, #fff 50%, #bdc3c7 55%, #333 100%);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.2rem;
+            color: var(--naruto-orange);
+            text-shadow: 0 0 20px var(--naruto-orange);
+            background: #0f0c1a;
+            padding: 0 20px;
+            filter: drop-shadow(0 0 6px #f97316);
         }
 
-        /* 查克拉流動感大頭貼 */
         .avatar-container {
-            position: relative;
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 30px;
-        }
-
-        .avatar-chakra {
-            position: absolute;
-            top: -6px;
-            left: -6px;
-            right: -6px;
-            bottom: -6px;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            background: radial-gradient(circle at 30% 30%, #f97316, #b45309);
             border-radius: 50%;
-            background: conic-gradient(var(--naruto-orange), var(--rasengan-blue), var(--uzumaki-red), var(--chakra-purple), var(--naruto-orange));
-            animation: spinChakra 4s linear infinite;
-            z-index: 1;
-            box-shadow: 0 0 20px var(--border-glow);
-        }
-
-        .avatar-inner {
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 152px;
-            height: 152px;
-            border-radius: 50%;
-            background-color: var(--bg-card);
-            z-index: 2;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 4px solid var(--bg-dark);
-            overflow: hidden;
+            padding: 4px;
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.5), inset 0 0 15px rgba(255, 200, 50, 0.3);
+            border: 2px solid #fbbf24;
+            transform: rotate(0deg);
+            transition: 0.4s ease;
+        }
+        .avatar-container:hover {
+            transform: scale(1.02) rotate(2deg);
+            box-shadow: 0 0 45px #f97316;
         }
 
-        /* 大頭貼代稱 */
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #0f0c1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #0f0c1a;
+        }
+
         .avatar-inner span {
             font-size: 3.2rem;
             font-weight: 900;
-            color: var(--naruto-orange);
-            text-shadow: 0 0 15px rgba(255, 106, 19, 0.6);
-        }
-
-        @keyframes spinChakra {
-            100% { transform: rotate(360deg); }
+            font-family: 'Kaisei Tokumin', serif;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+            letter-spacing: 4px;
         }
 
         header h1 {
-            font-size: 3.3rem;
+            font-size: 3.2rem;
             font-weight: 900;
-            letter-spacing: 3px;
-            color: #fff;
-            text-shadow: 0 0 15px rgba(255, 106, 19, 0.6);
-            margin-bottom: 5px;
+            font-family: 'Kaisei Tokumin', serif;
+            letter-spacing: 6px;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+            color: #fff3e0;
+            margin-bottom: 6px;
         }
 
-        header .title-jp {
-            font-size: 1.15rem;
-            color: var(--naruto-orange);
+        header .subtitle {
+            font-size: 1.2rem;
             font-weight: 700;
-            letter-spacing: 5px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            color: #fbbf24;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 4px 20px;
+            border-radius: 30px;
+            letter-spacing: 2px;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            backdrop-filter: blur(2px);
+            margin-bottom: 25px;
         }
 
         header .intro-text {
             color: var(--text-muted);
-            max-width: 700px;
-            margin: 15px auto 30px;
+            max-width: 750px;
+            margin: 0 auto 30px;
             font-size: 1.05rem;
+            background: rgba(0,0,0,0.25);
+            padding: 14px 24px;
+            border-radius: 20px;
+            border-left: 4px solid var(--naruto-orange);
+            backdrop-filter: blur(2px);
         }
 
-        /* ================= 社交連結平台（查克拉光芒按鈕） ================= */
+        header .intro-text strong {
+            color: #fbbf24;
+            font-weight: 900;
+        }
+
+        /* 社交按鈕 — 苦無風格 */
         .social-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 12px;
         }
 
         .social-btn {
@@ -170,689 +174,520 @@
             color: var(--text-light);
             text-decoration: none;
             padding: 10px 22px;
-            border: 1px solid var(--naruto-orange);
-            border-radius: 30px;
+            border: 1px solid rgba(249, 115, 22, 0.5);
+            border-radius: 40px;
             font-size: 0.95rem;
             font-weight: 700;
-            background: rgba(255, 106, 19, 0.05);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background: rgba(30, 27, 45, 0.6);
+            backdrop-filter: blur(4px);
+            transition: all 0.25s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 5px rgba(249, 115, 22, 0.1);
         }
 
         .social-btn:hover {
-            background: var(--naruto-orange);
-            color: var(--bg-dark);
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 106, 19, 0.5);
-        }
-
-        /* 社交平台個性化 Hover 配色 */
-        .social-btn.resume:hover {
-            background: linear-gradient(45deg, var(--uzumaki-red) 0%, var(--naruto-orange) 100%);
+            background: rgba(249, 115, 22, 0.15);
+            border-color: #fbbf24;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
             color: #fff;
-            border-color: transparent;
-            box-shadow: 0 0 20px rgba(211, 47, 47, 0.6);
         }
 
-        .social-btn.instagram:hover {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 0 20px rgba(220, 39, 67, 0.6);
+        .social-btn i {
+            color: #fbbf24;
         }
 
-        .social-btn.threads:hover {
-            background: #ffffff;
-            color: #000000;
-            border-color: transparent;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        /* ===== 區塊標題 忍術 ===== */
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 900;
+            font-family: 'Kaisei Tokumin', serif;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #f5e8d8;
+            border-bottom: 3px solid var(--naruto-orange);
+            padding-bottom: 12px;
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.2);
+            letter-spacing: 2px;
         }
 
-        /* ================= 卷軸式標題（Scroll Section Title） ================= */
+        .section-title i {
+            color: #fbbf24;
+            font-size: 1.6rem;
+            filter: drop-shadow(0 0 8px #f97316);
+        }
+
         section {
             margin-bottom: 70px;
         }
 
-        .section-scroll-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 35px;
-        }
-
-        /* 卷軸兩端的紅色圓柱 */
-        .scroll-rod {
-            width: 15px;
-            height: 44px;
-            background: linear-gradient(180deg, var(--uzumaki-red) 0%, #7e1b1b 100%);
-            border-radius: 4px;
-            border: 2px solid #000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-        }
-
-        /* 卷軸本體紙張 */
-        .scroll-paper {
-            background: linear-gradient(90deg, #ecdcb9 0%, #fffdf4 50%, #ecdcb9 100%);
-            color: #2b1d0a;
-            padding: 6px 30px;
-            font-weight: 900;
-            font-size: 1.4rem;
-            border: 2px solid #2b1d0a;
-            border-radius: 5px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            letter-spacing: 3px;
+        /* ===== 時間軸 ===== */
+        .timeline {
             position: relative;
+            padding-left: 30px;
         }
 
-        /* ================= 忍道（自傳 & 技能度量） ================= */
-        .nindo-card {
-            background-color: var(--bg-card);
-            border: 2px solid var(--border-glow);
-            border-radius: 18px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        /* 背景漩渦紋章 (Uzumaki watermark) */
-        .nindo-card::after {
-            content: '🌀';
+        .timeline::before {
+            content: '';
             position: absolute;
-            right: -30px;
-            bottom: -40px;
-            font-size: 11rem;
-            opacity: 0.05;
-            transform: rotate(-12deg);
-            pointer-events: none;
+            left: 9px;
+            top: 10px;
+            bottom: 10px;
+            width: 3px;
+            background: linear-gradient(180deg, #f97316, #fbbf24, #b45309);
+            border-radius: 6px;
         }
 
-        .nindo-card p {
-            font-size: 1.1rem;
-            color: #d1d5db;
-            margin-bottom: 22px;
-            text-align: justify;
-        }
-
-        .nindo-card p strong {
-            color: var(--naruto-orange);
-        }
-
-        /* 技能度量區 */
-        .stats-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: var(--naruto-orange);
-            margin-top: 35px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .stat-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 18px;
-            border-radius: 10px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        .stat-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .stat-name {
-            color: var(--text-light);
-        }
-
-        .stat-val {
-            color: var(--rasengan-blue);
-        }
-
-        .stat-bar-bg {
-            height: 8px;
-            background: #1a1a24;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .stat-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--naruto-orange), var(--uzumaki-red));
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(255, 106, 19, 0.6);
-        }
-
-        /* ================= 忍者修煉課表（課程分類卡片） ================= */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 25px;
-            margin-top: 10px;
-        }
-
-        .course-category-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            border-radius: 14px;
-            padding: 24px;
+        .timeline-item {
             position: relative;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
         }
 
-        .course-category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        .timeline-dot {
+            position: absolute;
+            left: -30px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #0f0c1a;
+            border: 3px solid #f97316;
+            box-shadow: 0 0 18px #f97316;
+            transition: 0.3s;
         }
 
-        /* 四大屬性邊框發光 */
-        .course-category-card.ai-alg { border-top: 4px solid var(--chakra-purple); }
-        .course-category-card.vision { border-top: 4px solid var(--rasengan-blue); }
-        .course-category-card.sys { border-top: 4px solid var(--naruto-orange); }
-        .course-category-card.art { border-top: 4px solid var(--uzumaki-red); }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.15rem;
-            font-weight: 900;
-            margin-bottom: 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 10px;
+        .timeline-item.active .timeline-dot {
+            background: #fbbf24;
+            border-color: #f97316;
+            box-shadow: 0 0 25px #f97316;
         }
 
-        .course-category-card.ai-alg .category-header i { color: var(--chakra-purple); }
-        .course-category-card.vision .category-header i { color: var(--rasengan-blue); }
-        .course-category-card.sys .category-header i { color: var(--naruto-orange); }
-        .course-category-card.art .category-header i { color: var(--uzumaki-red); }
-
-        .course-list {
-            list-style: none;
+        .timeline-item.next .timeline-dot {
+            background: #f97316;
+            border-color: #fbbf24;
+            box-shadow: 0 0 30px #f97316;
         }
 
-        .course-list li {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .timeline-content {
+            background: var(--naruto-card);
+            border: 1px solid rgba(249, 115, 22, 0.25);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(4px);
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
 
-        .course-list li::before {
-            content: '❖';
-            color: var(--naruto-orange);
-            font-size: 0.8rem;
+        .timeline-content:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 0 25px rgba(249, 115, 22, 0.15);
         }
 
-        .course-code {
-            font-family: monospace;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--text-light);
-            font-weight: bold;
-        }
-
-        /* ================= 任務卷軸（經歷與成果） ================= */
-        .mission-timeline {
-            position: relative;
-        }
-
-        .mission-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 106, 19, 0.15);
-            border-left: 5px solid var(--naruto-orange);
-            border-radius: 14px;
-            padding: 30px;
-            margin-bottom: 30px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        .mission-card:hover {
-            transform: translateX(8px);
-            border-color: var(--naruto-orange);
-            box-shadow: 0 0 25px rgba(255, 106, 19, 0.2);
-        }
-
-        .mission-header {
+        .timeline-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 15px;
-            gap: 12px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
-        .mission-title {
-            font-size: 1.35rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        /* 任務分級標記 */
-        .mission-badge {
-            padding: 4px 14px;
-            border-radius: 6px;
-            font-size: 0.85rem;
+        .timeline-institution {
+            font-size: 1.3rem;
             font-weight: 900;
+            font-family: 'Kaisei Tokumin', serif;
+            color: #f5e8d8;
             letter-spacing: 1px;
-            background: rgba(211, 47, 47, 0.15);
-            color: #ff5252;
-            border: 1px solid rgba(211, 47, 47, 0.3);
         }
 
-        .mission-badge.s-rank {
-            background: rgba(0, 210, 255, 0.15);
-            color: var(--rasengan-blue);
-            border-color: rgba(0, 210, 255, 0.3);
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.1);
+        .timeline-item.next .timeline-institution {
+            color: #fbbf24;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
         }
 
-        .mission-desc {
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #b8a9a1;
+            background: rgba(249, 115, 22, 0.1);
+            padding: 2px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+
+        .timeline-detail {
             color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 15px;
+            font-size: 0.95rem;
         }
 
-        .mission-bullets {
+        .timeline-detail strong {
+            color: #fbbf24;
+        }
+
+        /* ===== 修課 ===== */
+        .course-tabs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            background: var(--naruto-card);
+            border: 1px solid rgba(249, 115, 22, 0.15);
+            border-radius: 20px;
+            padding: 22px 18px;
+            backdrop-filter: blur(4px);
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .course-card:hover {
+            transform: translateY(-6px);
+            border-color: #fbbf24;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.15);
+            background: rgba(40, 35, 55, 0.8);
+        }
+
+        .course-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #fbbf24;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            border-left: 4px solid #f97316;
+            padding-left: 10px;
+        }
+
+        .course-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f5e8d8;
+            margin-bottom: 12px;
+            font-family: 'Kaisei Tokumin', serif;
+        }
+
+        .course-sublist {
             list-style: none;
         }
 
-        .mission-bullets li {
+        .course-sublist li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            padding-left: 16px;
             position: relative;
-            padding-left: 22px;
-            color: #a0aec0;
-            font-size: 0.95rem;
-            margin-bottom: 8px;
         }
 
-        .mission-bullets li::before {
+        .course-sublist li::before {
             content: '✦';
             position: absolute;
             left: 0;
-            color: var(--naruto-orange);
-            text-shadow: 0 0 5px var(--naruto-orange);
+            color: #f97316;
+            font-size: 0.7rem;
+            top: 2px;
         }
 
-        /* ================= 木葉日常（親民生活趣味） ================= */
-        .daily-grid {
+        /* ===== 專案卡片 ===== */
+        .project-card {
+            background: var(--naruto-card);
+            border: 1px solid rgba(249, 115, 22, 0.15);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: 0.25s;
+        }
+
+        .project-card:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 8px 30px rgba(249, 115, 22, 0.12);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            font-family: 'Kaisei Tokumin', serif;
+            color: #f5e8d8;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 30px;
+            background: rgba(249, 115, 22, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .project-bullets {
+            list-style: none;
+            padding-left: 5px;
+        }
+
+        .project-bullets li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .project-bullets li::before {
+            content: '⚔️';
+            position: absolute;
+            left: 0;
+            color: #f97316;
+            font-size: 1rem;
+            filter: drop-shadow(0 0 4px #f97316);
+        }
+
+        .project-bullets li strong {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        /* ===== 課外 ===== */
+        .activities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 25px;
         }
 
-        .daily-card {
-            background-color: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 14px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        @media (max-width: 768px) {
+            .activities-grid { grid-template-columns: 1fr; }
         }
 
-        .daily-card:hover {
-            border-color: var(--rasengan-blue);
-            transform: translateY(-6px);
-            box-shadow: 0 12px 25px rgba(0, 210, 255, 0.15);
-        }
-
-        .daily-icon {
-            font-size: 2.4rem;
-            color: var(--rasengan-blue);
-            margin-bottom: 18px;
-        }
-
-        /* 卡片客製色彩 */
-        .daily-card:nth-child(2) .daily-icon {
-            color: var(--naruto-orange);
-        }
-
-        .daily-card:nth-child(3) .daily-icon {
-            color: var(--uzumaki-red);
-        }
-
-        .daily-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .daily-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            text-align: justify;
-            line-height: 1.7;
-        }
-
-        /* ================= 羈絆（課外經歷） ================= */
-        .bonds-card {
-            background: linear-gradient(135deg, var(--bg-card) 0%, #15111d 100%);
-            border: 1px solid rgba(155, 81, 224, 0.25);
-            border-radius: 18px;
-            padding: 35px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        /* 浮水字 */
-        .bonds-card::before {
-            content: 'KIZUNA';
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 0.8rem;
-            font-weight: 900;
-            color: var(--chakra-purple);
-            letter-spacing: 3px;
-            opacity: 0.4;
-        }
-
-        /* ================= Footer 區塊 ================= */
+        /* ===== 頁尾 ===== */
         footer {
             text-align: center;
-            padding: 60px 20px;
-            border-top: 2px dashed #1a1b24;
+            padding: 50px 20px;
+            border-top: 2px solid rgba(249, 115, 22, 0.2);
             color: var(--text-muted);
             font-size: 0.9rem;
-            margin-top: 70px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(2px);
         }
 
-        footer p a {
-            color: var(--naruto-orange);
-            text-decoration: none;
+        footer p {
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1px;
         }
 
-        footer p a:hover {
-            text-decoration: underline;
+        /* ===== 響應 ===== */
+        @media (max-width: 500px) {
+            header h1 { font-size: 2.5rem; }
+            .avatar-container { width: 110px; height: 110px; }
+            .social-btn { padding: 6px 14px; font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 頂部護額、大頭貼與主標題 -->
-    <header>
-        <div class="avatar-container">
-            <div class="avatar-chakra"></div>
-            <div class="avatar-inner">
-                <span>碩</span>
-            </div>
-        </div>
-        <h1>蔣碩文</h1>
-        <div class="title-jp">木葉村 · 資工系之忍</div>
-        
-        <p class="intro-text">
-            就讀於元智大學資工系四年級。未來想要進入研究所鑽研機器學習化為個人的「實戰忍術」。<br>
-            在鑽研代碼的同時，我熱中玩遊戲、寫音樂彈吉他，是一個充分享受生活的陽光工程師！
-        </p>
-
-        <!-- 社交平台連結區 -->
-        <div class="social-container">
-            <a href="https://github.com/tc9305" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
-            <!-- 履歷按鈕：點擊可下載/開啟同目錄下的 resume.pdf -->
-            <a href="resume.pdf" target="_blank" class="social-btn resume"><i class="fa-solid fa-scroll"></i> 個人履歷</a>
-            <a href="mailto:tc930512@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://www.instagram.com/shuo_0512/" target="_blank" class="social-btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://www.threads.net/@shuo_0512" target="_blank" class="social-btn threads"><i class="fa-solid fa-at"></i> Threads</a>
-            <a href="tel:0966761550" class="social-btn"><i class="fas fa-phone"></i> 聯絡電話</a>
-        </div>
-    </header>
-
-    <div class="container">
-
-        <!-- 忍道 // 自傳、查克拉屬性 -->
-        <section id="nindo">
-            <div class="section-scroll-title">
-                <div class="scroll-rod"></div>
-                <div class="scroll-paper">我的忍道 // NINDO</div>
-                <div class="scroll-rod"></div>
-            </div>
-            
-            <div class="nindo-card">
-                <p>
-                    <strong>「言出必行，這就是我的忍道！」</strong><br>
-                    嗨，我是碩文，目前在元智大學鑽研「資工之術」（資工系四年級）。我的主要修煉領域圍繞在<strong>人工智慧應用與後端系統架構整合</strong>。我不僅熟練於資料處理、後端 API 開發，更具備雲端與 Docker 部署的經驗。對我而言，把 AI 預測模型成功整合到實體應用、解決生活周遭的具體問題，就像成功研發一門實用的新忍術一樣，無比暢快！
-                </p>
-                <p>
-                    除了個人的硬實力，我極度在乎同伴間的<strong>「羈絆」</strong>（溝通交流與團隊合作）。在實驗室與專題修行外，我也喜歡涉足各種新奇領域。我期許自己在未來的研究所階段能如「開啟仙人模式」一般，全面深化對演算法及 AI 模型的根本性理解！
-                </p>
-
-                <!-- 技能查克拉數值化度量 -->
-                <div class="stats-title">
-                    <i class="fa-solid fa-fire-flame-curved"></i> 查克拉屬性度量 (Ninja Stats)
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-label">
-                            <span class="stat-name">Python / AI 影像辨識</span>
-                            <span class="stat-val">95%</span>
-                        </div>
-                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%;"></div></div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">
-                            <span class="stat-name">C# / ASP.NET 後端術</span>
-                            <span class="stat-val">90%</span>
-                        </div>
-                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 90%;"></div></div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">
-                            <span class="stat-name">SQL 資料庫陣法</span>
-                            <span class="stat-val">85%</span>
-                        </div>
-                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 85%;"></div></div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">
-                            <span class="stat-name">GCP & Azure 雲端部署</span>
-                            <span class="stat-val">88%</span>
-                        </div>
-                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 88%;"></div></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 忍者修煉課表 // COURSES -->
-        <section id="courses">
-            <div class="section-scroll-title">
-                <div class="scroll-rod"></div>
-                <div class="scroll-paper">忍者修煉課表 // COURSES</div>
-                <div class="scroll-rod"></div>
-            </div>
-
-            <div class="courses-grid">
-                <!-- 類別 1: 仙術與預測 (AI, Data, Alg) -->
-                <div class="course-category-card ai-alg">
-                    <div class="category-header">
-                        <i class="fa-solid fa-brain"></i>
-                        <span>仙術與預測<br> (AI & 演算法)</span>
-                    </div>
-                    <ul class="course-list">
-                        <li><span class="course-code">CS351</span> 人工智慧輔助軟體開發</li>
-                        <li><span class="course-code">CS412</span> 資料探勘 (Data Mining)</li>
-                        <li><span class="course-code">CS309</span> 演算法概論</li>
-                        <li><span class="course-code">CS678</span> 高級圖論 (Graph Theory)</li>
-                    </ul>
-                </div>
-
-                <!-- 類別 2: 寫輪瞳術與渲染 (Vision & Graphics) -->
-                <div class="course-category-card vision">
-                    <div class="category-header">
-                        <i class="fa-solid fa-eye"></i>
-                        <span>寫輪瞳術<br> (影像與遊戲)</span>
-                    </div>
-                    <ul class="course-list">
-                        <li><span class="course-code">CS362</span> 影像處理概論 (CV)</li>
-                        <li><span class="course-code">CS330</span> 遊戲引擎理論與實務</li>
-                        <li><span class="course-code">CS410</span> 智慧型科技應用</li>
-                    </ul>
-                </div>
-
-                <!-- 類別 3: 陣法結印與架構 (Systems & Cloud) -->
-                <div class="course-category-card sys">
-                    <div class="category-header">
-                        <i class="fa-solid fa-server"></i>
-                        <span>結印陣法<br> (系統與雲端)</span>
-                    </div>
-                    <ul class="course-list">
-                        <li><span class="course-code">CS337</span> 雲端運算與服務</li>
-                        <li><span class="course-code">CS320</span> 微處理機系統設計</li>
-                        <li><span class="course-code">CS305</span> 作業系統概論</li>
-                        <li><span class="course-code">CS151</span> 網站程式設計實務</li>
-                    </ul>
-                </div>
-
-                <!-- 類別 4: 封印防禦與修煉基本功 (Fundamentals & Security) -->
-                <div class="course-category-card art">
-                    <div class="category-header">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span>封印防護<br> (基礎與安全)</span>
-                    </div>
-                    <ul class="course-list">
-                        <li><span class="course-code">CS203</span> 資料結構 (Data Structures)</li>
-                        <li><span class="course-code">CS354</span> 電腦與網路安全概論</li>
-                        <li><span class="course-code">CS107</span> 離散數學 (Discrete Math)</li>
-                        <li><span class="course-code">CS222</span> 程式語言 (PL)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 任務卷軸 // 專案與經驗 -->
-        <section id="missions">
-            <div class="section-scroll-title">
-                <div class="scroll-rod"></div>
-                <div class="scroll-paper">任務卷軸 // MISSIONS</div>
-                <div class="scroll-rod"></div>
-            </div>
-
-            <div class="mission-timeline">
-                
-                <!-- 任務 1 -->
-                <div class="mission-card">
-                    <div class="mission-header">
-                        <span class="mission-title">生物資訊：特徵選取與預測平台</span>
-                        <span class="mission-badge s-rank">S級任務</span>
-                    </div>
-                    <div class="mission-desc">以預測轉錄蛋白中 ATP 結合位點為目標，建構高精準度的預測系統。</div>
-                    <ul class="mission-bullets">
-                        <li>進行生物序列資料前處理，使用 Sliding Window 機制進行特徵提取。</li>
-                        <li>召喚並訓練 XGBoost 與 Random Forest 等多種機器學習演算法。</li>
-                        <li>以 Flask 架設後端 API，運用 Docker 進行容器化「封印」，並成功部署於 GCP 雲端平台。</li>
-                    </ul>
-                </div>
-
-                <!-- 任務 2 -->
-                <div class="mission-card">
-                    <div class="mission-header">
-                        <span class="mission-title">達方電子 ITS 部門 BPM Team 實習生</span>
-                        <span class="mission-badge">A級任務 (2025.01 - 2025.09)</span>
-                    </div>
-                    <div class="mission-desc">進入企業級真實戰場，深度參與內部核心系統維護與功能優化。</div>
-                    <ul class="mission-bullets">
-                        <li>基於 ASP.NET MVC 架構，負責企業內部系統的前後端維運與重構。</li>
-                        <li>交替使用 C#、JavaScript 及 jQuery 等多種印記快速編寫功能。</li>
-                        <li>設計 SQL Server 資料庫，編寫 Stored Procedure 讓查詢加速（效率堪比瞬身之術）。</li>
-                    </ul>
-                </div>
-
-                <!-- 任務 3 -->
-                <div class="mission-card">
-                    <div class="mission-header">
-                        <span class="mission-title">IoT 與即時影像辨識系統：寵物小管家</span>
-                        <span class="mission-badge">B級任務</span>
-                    </div>
-                    <div class="mission-desc">結合嵌入式軟硬體與智慧辨識，守護木葉村毛孩們的日常健康。</div>
-                    <ul class="mission-bullets">
-                        <li>使用 Raspberry Pi 結合 YOLO 偵測模型，實作即時動物偵測與警報功能。</li>
-                        <li>打通感測器資料與影像的即時傳輸機制，搭建穩固的資料庫存取後端。</li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 木葉日常 // 生活感興趣區塊 -->
-        <section id="daily">
-            <div class="section-scroll-title">
-                <div class="scroll-rod"></div>
-                <div class="scroll-paper">木葉日常 // LIFE</div>
-                <div class="scroll-rod"></div>
-            </div>
-
-            <div class="daily-grid">
-                
-                <!-- 卡片 1 -->
-                <div class="daily-card">
-                    <div class="daily-icon"><i class="fa-solid fa-gamepad"></i></div>
-                    <div class="daily-title">電玩與修行</div>
-                    <div class="daily-desc">
-                        在虛擬世界的修煉場挑戰極限！我是個標準的重度 Gamer，對多款熱門遊戲都很有心得，而我特別熱衷於《英雄聯盟 (LEAGUE OF LEGENDS)》。此外，因為學校修課所以正在學習動手在 Unity 3D 中做一些COOL專案。
-                    </div>
-                </div>
-
-                <!-- 卡片 2 -->
-                <div class="daily-card">
-                    <div class="daily-icon"><i class="fa-solid fa-bowl-food"></i></div>
-                    <div class="daily-title">一樂美食魂</div>
-                    <div class="daily-desc">
-                        如果說鳴人熱愛一樂拉麵，那我的精神糧食絕對也是拉麵！這是日常寫 code 的查克拉來源!!!
-                    </div>
-                </div>
-
-                <!-- 卡片 3 -->
-                <div class="daily-card">
-                    <div class="daily-icon"><i class="fa-solid fa-plane-departure"></i></div>
-                    <div class="daily-title">探索地圖</div>
-                    <div class="daily-desc">
-                        喜歡開啟視野的旅行。不僅去過釜山大阪，最近剛完成心心念念的東京畢業旅行，在澀谷 Sky 的高空，留下了像火影俯瞰村落般的絕美風景照。
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 夥伴羈絆 // 課外經歷 -->
-        <section id="bonds">
-            <div class="section-scroll-title">
-                <div class="scroll-rod"></div>
-                <div class="scroll-paper">夥伴羈絆 // BONDS</div>
-                <div class="scroll-rod"></div>
-            </div>
-
-            <div class="bonds-card">
-                <p style="margin: 0; line-height: 1.8; color: #e2e8f0;">
-                    在元智大學期間，我深深體會到「同伴」的力量。因此我曾出任過<strong>資工系學會幹部</strong>，負責並籌辦了多項活動，學習如何凝聚群眾查克拉。同時，我也是<strong>吉他社</strong>的社員。比起密集的程式邏輯，我非常喜歡偶爾抱著吉他彈彈唱唱，用音樂撫慰心靈，平衡冰冷的思考！
-                </p>
-            </div>
-        </section>
-
+<header>
+    <div class="avatar-container">
+        <div class="avatar-inner"><span>碩</span></div>
     </div>
+    <h1>蔣碩文</h1>
+    <div class="subtitle">資訊工程學系 · 忍道修行</div>
+    
+    <p class="intro-text">
+        畢業於<strong>元智大學資訊工程學系</strong>，即將進入<strong>國立臺灣師範大學資訊工程研究所</strong>攻讀碩士學位。<br>
+        具備深度學習模型應用、電腦視覺開發、以及企業級後端系統實習經驗。擅長串接端到端（End-to-End）實體系統，並在核心演算法與底層架構建置中持續深化修行。
+    </p>
 
-    <!-- 頁尾 -->
-    <footer>
-        <p>© 2026 蔣碩文 Shuo-Wen Chiang. 修煉自 💻 & ☕.</p>
-        <p style="font-size: 0.75rem; margin-top: 5px; color: #4b4f63;">木葉暗部技術支援 · Hosted on GitHub Pages</p>
-    </footer>
+    <div class="social-container">
+        <a href="https://github.com/tc9305" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
+        <a href="RESUME.pdf" target="_blank" class="social-btn"><i class="fa-solid fa-file-pdf"></i> 個人履歷</a>
+        <a href="mailto:tc930512@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.instagram.com/shuo_0512/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.threads.net/@shuo_0512" target="_blank" class="social-btn"><i class="fa-solid fa-at"></i> Threads</a>
+        <a href="tel:0966761550" class="social-btn"><i class="fas fa-phone"></i> 聯絡</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- 學術軌跡 -->
+    <section id="academic-timeline">
+        <div class="section-title">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>學術軌跡 // Timeline</span>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item active">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span class="timeline-institution">元智大學 (YZU) — 資訊工程學系</span>
+                        <span class="timeline-date">2022.09 - 2026.06</span>
+                    </div>
+                    <div class="timeline-detail">
+                        <p>大學學士階段。專注於計算機科學核心學科與核心程式設計，並於中高年級起深耕<strong>人工智慧應用、電腦視覺、資料科學與遊戲引擎實務</strong>。在此期間奠定了紮實的實作基礎，並跨足企業實習環境。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item next">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span class="timeline-institution">國立臺灣師範大學 (NTNU) — 資訊工程研究所</span>
+                        <span class="timeline-date">2026.09 - 預計 2028.06</span>
+                    </div>
+                    <div class="timeline-detail">
+                        <p>即將就讀之碩士班階段。研究方向預計聚焦於演算法優化、前沿深度學習架構設計與底層 AI 模型開發，目標將學術研究與大規模工業界需求進行深度整合。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 修課紀錄 -->
+    <section id="coursework">
+        <div class="section-title">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <span>專業修課紀錄 // Coursework</span>
+        </div>
+
+        <div class="course-tabs">
+            <div class="course-card">
+                <div class="course-year">AI & Data Science</div>
+                <h4>人工智慧與資料科學</h4>
+                <ul class="course-sublist">
+                    <li>機器學習與深度學習</li>
+                    <li>資料探勘 (Data Mining)</li>
+                    <li>人工智慧輔助軟體開發</li>
+                    <li>生物資訊概論</li>
+                    <li>智慧型科技應用</li>
+                </ul>
+            </div>
+
+            <div class="course-card">
+                <div class="course-year">Computer Vision & Graphics</div>
+                <h4>電腦視覺與互動媒體</h4>
+                <ul class="course-sublist">
+                    <li>影像處理概論 (OpenCV)</li>
+                    <li>遊戲引擎理論與實務 (Unity)</li>
+                    <li>物件偵測與自訂資料集 (YOLO)</li>
+                </ul>
+            </div>
+
+            <div class="course-card">
+                <div class="course-year">Systems & Network</div>
+                <h4>系統、網路與後端開發</h4>
+                <ul class="course-sublist">
+                    <li>微處理機系統設計</li>
+                    <li>雲端運算與服務</li>
+                    <li>計算機網路概論</li>
+                    <li>新型態網路</li>
+                    <li>電腦與網路安全概論</li>
+                    <li>網站程式設計實務</li>
+                </ul>
+            </div>
+
+            <div class="course-card">
+                <div class="course-year">Core Computer Science</div>
+                <h4>資工核心理論基本功</h4>
+                <ul class="course-sublist">
+                    <li>資料結構</li>
+                    <li>演算法概論</li>
+                    <li>作業系統概論</li>
+                    <li>圖論 (Graduate Course)</li>
+                    <li>機率與統計 / 組合語言</li>
+                    <li>離散數學 / 線性代數</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 專業經歷 -->
+    <section id="experience">
+        <div class="section-title">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>專業經歷與學術專案 // Experience</span>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">深度學習與 AI 模型應用：生醫資訊與智慧寵物辨識系統</span>
+                <span class="project-tag">學術專案</span>
+            </div>
+            <ul class="project-bullets">
+                <li><strong>電腦視覺 (YOLO 寵物辨識)</strong>：自主完成自定義資料集的蒐集、影像標註與資料增強，透過 YOLO 模型調參最佳化，大幅提升即時物件偵測的推論速度與準確度。</li>
+                <li><strong>生醫資訊 (蛋白質序列預測)</strong>：處理高維度生物序列非結構化資料，進行數據前處理、特徵萃取與序列模型訓練，精準預測其潛在特性。</li>
+                <li>整合 <strong>OpenCV 影像處理工具</strong>與實體 IoT 裝置，成功實現端到端 (End-to-End) 的「即時影像辨識系統」。</li>
+            </ul>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">達方電子 (DARFON) ITS 部門 BPM 團隊 — 系統開發實習生</span>
+                <span class="project-tag">企業實習 (2025.01 - 2025.09)</span>
+            </div>
+            <ul class="project-bullets">
+                <li>基於 <strong>ASP.NET MVC 框架</strong>，使用 C#、JavaScript、jQuery 實作與重構前後端核心系統功能。</li>
+                <li>設計與維護 <strong>SQL Server 資料庫</strong>，編寫預存程序 (Stored Procedure) 與 Trigger，確保資料高度一致性。</li>
+                <li>透過執行計畫進行 <strong>Query 索引優化 (Query Indexing)</strong> 與批次大數據資料處理，顯著提升系統查詢效率。</li>
+                <li>開發主子表資料關聯、報表查詢與自動化資料匯出功能。</li>
+            </ul>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-title">自主雲端部署與自動化通知系統</span>
+                <span class="project-tag">個人項目</span>
+            </div>
+            <ul class="project-bullets">
+                <li>獨立建置與配置<strong>個人實體 NAS 伺服器</strong>，熟練掌握 HTTP/HTTPS/TCP 等網路底層協議。</li>
+                <li>結合 <strong>Webhook 與 API 技術整合開發 Line Bot</strong>，實現自動化即時通知與系統警報功能。</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 課外 -->
+    <section id="activities">
+        <div class="section-title">
+            <i class="fa-solid fa-compass"></i>
+            <span>綜合素養與課外參與 // Complementary</span>
+        </div>
+
+        <div class="activities-grid">
+            <div class="project-card" style="margin-bottom:0;">
+                <h4 style="margin-bottom:10px;"><i class="fa-solid fa-users" style="color:#fbbf24; margin-right:8px;"></i>團隊協作與組織能力</h4>
+                <p style="font-size:0.95rem; color:var(--text-muted);">
+                    曾出任<strong>資工系學會幹部</strong>，負責並筹辦多項系內大型活動，具備良好的溝通能力、群眾凝聚力與跨團隊協調協作思維。
+                </p>
+            </div>
+            <div class="project-card" style="margin-bottom:0;">
+                <h4 style="margin-bottom:10px;"><i class="fa-solid fa-guitar" style="color:#fbbf24; margin-right:8px;"></i>科技與感性的調和</h4>
+                <p style="font-size:0.95rem; color:var(--text-muted);">
+                    作為<strong>吉他社</strong>成員，喜愛自彈自唱。在緊密的程式代碼與嚴謹的邏輯思考之外，透過音樂培養感性視角與創造力，極度享受生活與科技碰撞的樂趣。
+                </p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 蔣碩文 Shuo-Wen Chiang · 忍道 · Built with 火影魂 & JetBrains Mono</p>
+</footer>
 
 </body>
 </html>
